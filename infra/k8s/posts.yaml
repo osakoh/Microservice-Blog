@@ -1,0 +1,13 @@
+# Config file: informs Kubernetes about the different Objects(Deployments, Pods, & Services) to be created
+apiVersion: v1
+# create a Pod
+kind: Pod
+# name of the pod is posts
+metadata:
+  name: posts
+spec:
+  # only one container in the pod
+  containers:
+    - name: posts
+      # build container using this image
+      image: osm/posts:0.0.1
