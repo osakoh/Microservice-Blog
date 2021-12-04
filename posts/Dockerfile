@@ -12,3 +12,8 @@ COPY ./ ./
 
 # set default command to run when the container starts up
 CMD ["npm", "start"]
+
+# FROM node:16-alpine
+# docker kill $(docker ps -q)
+# docker rm $(docker ps -a -q)
+# docker rmi $(docker images -q)
