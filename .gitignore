@@ -24,6 +24,7 @@ coverage
 *.lcov
 
 notes.txt
+infra/k8s/posts.old.yaml
 
 # nyc test coverage
 .nyc_output

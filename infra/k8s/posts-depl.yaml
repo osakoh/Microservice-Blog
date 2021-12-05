@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  # number of pods to run an image
+  replicas: 1
+  # find all pods with the label "app: posts" (Note: app: posts is just a key and value pair, it could be any name)
+  selector:
+    matchLabels:
+      app: posts
+      # template: a pod configuration
+      # specify exact config of a pod the deployment should create
+  template:
+    metadata:
+      # the pod should have a name of "app: posts"
+      labels:
+        app: posts
+    spec:
+      # container is a array of containers
+      # only one container in the pod
+      containers:
+        # make a container with the given name: posts
+        - name: posts
+          # build container using this image with version number else Docker will use "osm/posts:latest" for every image
+          image: osm/posts:0.0.1
