@@ -23,4 +23,4 @@ spec:
         # make a container with the given name: posts
         - name: posts
           # build container using this image with version number else Docker will use "osm/posts:latest" for every image
-          image: osm/posts:0.0.5
+          image: osakoh/posts
