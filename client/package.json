@@ -22,7 +22,8 @@
     "comments": "cd .. && npm start --prefix comments",
     "query": "cd .. && npm start --prefix query",
     "event-bus": "cd .. && npm start --prefix event-bus",
-    "start-all": "concurrently \"npm run event-bus\"  \"npm run query\" \"npm run posts\" \"npm run comments\" \"npm run start\""
+    "moderation": "cd .. && npm start --prefix moderation",
+    "start-all": "concurrently \"npm run event-bus\"  \"npm run query\" \"npm run posts\" \"npm run moderation\" \"npm run comments\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": [
