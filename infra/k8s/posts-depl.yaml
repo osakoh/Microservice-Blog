@@ -13,7 +13,7 @@ spec:
       # specify exact config of a pod the deployment should create
   template:
     metadata:
-      # the pod should have a name of "app: posts"
+      # the pod should have a name of "app: posts". Can be seen as classnames in HTMl(select a set of elements easily)
       labels:
         app: posts
     spec:

@@ -1,0 +1,25 @@
+# Node Port: Makes a pod accessible from outside a cluster. Only used for development purposes
+apiVersion: v1
+kind: Service
+metadata:
+  # name of service
+  name: posts-srv
+# behaviour of service
+spec:
+  # type of service to create
+  type: NodePort
+  # pods to expose in cluster
+  # Can be seen as classnames in HTMl(select a set of elements easily)
+  selector:
+    app: posts
+    # list/array of ports to expose in a pod. Recall post listens on port 4000
+    # array in YAML is specified by a dash(-)
+    ## Note: port and targetPort don't have to be the same
+  ports:
+    # name is for logging or debugging purposes
+    - name: posts
+      protocol: TCP
+      # this is the node port service which redirects traffic to port 4000 on the container
+      port: 4000
+      # actual port the application listens on(ie. port attached to the container)
+      targetPort: 4000
