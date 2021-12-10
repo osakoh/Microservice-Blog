@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  # number of pods to run an image
+  replicas: 1
+  # find all pods with the label "app: event-bus" (Note: app: event-bus is just a key and value pair, it could be any name)
+  selector:
+    matchLabels:
+      app: event-bus
+      # template: a pod configuration
+      # specify exact config of a pod the deployment should create
+  template:
+    metadata:
+      # the pod should have a name of "app: event-bus". Can be seen as classnames in HTMl(select a set of elements easily)
+      labels:
+        app: event-bus
+    spec:
+      # container is a array of containers
+      # only one container in the pod
+      containers:
+        # make a container with the given name: event-bus
+        - name: event-bus
+          # build container using this image with version number else Docker will use "osm/event-bus:latest" for every image
+          image: osakoh/event-bus
