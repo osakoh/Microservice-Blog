@@ -48,6 +48,6 @@ spec:
       port: 4005
       # actual port the application listens on(ie. port attached to the container)
       targetPort: 4005
-# A randomly assign port known as Node Port (3xxxx) connects to the Node Port Service port which then connects to the targetPort of the container
-# NodePort: posts  31855/TCP => localhost:31855/posts
+###### A randomly assign port known as Node Port (3xxxx) connects to the Node Port Service port which then connects to the targetPort of the container
+###### NodePort: posts  31855/TCP => localhost:31855/posts
 
