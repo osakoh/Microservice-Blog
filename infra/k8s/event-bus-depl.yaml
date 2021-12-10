@@ -24,3 +24,30 @@ spec:
         - name: event-bus
           # build container using this image with version number else Docker will use "osm/event-bus:latest" for every image
           image: osakoh/event-bus
+
+---
+# ******************************* configuration for event-bus ClusterIP service *******************************
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+# behaviour of service
+spec:
+  # type of service to create
+  # without specifying the type, k8s defaults to creating a ClusterIP service
+  type: ClusterIP
+  # pods to expose in cluster
+  selector:
+    # direct traffic to pods named "event-bus"
+    app: event-bus
+  ports:
+    # name is for logging or debugging purposes
+    - name: event-bus
+      protocol: TCP
+      # port assigned to Node Port service which redirects traffic to the targetPort 4005 on the container
+      port: 4005
+      # actual port the application listens on(ie. port attached to the container)
+      targetPort: 4005
+# A randomly assign port known as Node Port (3xxxx) connects to the Node Port Service port which then connects to the targetPort of the container
+# NodePort: posts  31855/TCP => localhost:31855/posts
+
