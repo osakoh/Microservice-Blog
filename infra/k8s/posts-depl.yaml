@@ -24,3 +24,27 @@ spec:
         - name: posts
           # build container using this image with version number else Docker will use "osm/posts:latest" for every image
           image: osakoh/posts
+
+---
+# ******************************* configuration for posts ClusterIP service *******************************
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+# behaviour of service
+spec:
+  # type of service to create
+  # without specifying the type, k8s defaults to creating a ClusterIP service
+  type: ClusterIP
+  # pods to expose in cluster
+  selector:
+    # direct traffic to pods named "posts"
+    app: posts
+  ports:
+    # name is for logging or debugging purposes
+    - name: posts
+      protocol: TCP
+      # port assigned to Node Port service which redirects traffic to the targetPort 4005 on the container
+      port: 4000
+      # actual port the application listens on(ie. port attached to the container)
+      targetPort: 4000
