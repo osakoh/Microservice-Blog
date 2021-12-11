@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  # number of pods to run an image
+  replicas: 1
+  # find all pods with the label "app: comments" (Note: app: comments is just a key and value pair, it could be any name)
+  selector:
+    matchLabels:
+      app: comments
+      # template: a pod configuration
+      # specify exact config of a pod the deployment should create
+  template:
+    metadata:
+      # the pod should have a name of "app: comments". Can be seen as classnames in HTMl(select a set of elements easily)
+      labels:
+        app: comments
+    spec:
+      # container is a array of containers
+      # only one container in the pod
+      containers:
+        # make a container with the given name: comments
+        - name: comments
+          # build container using this image with version number else Docker will use "osm/comments:latest" for every image
+          image: osakoh/comments
+
+---
+# ******************************* configuration for comments ClusterIP service *******************************
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+# behaviour of service
+spec:
+  # type of service to create
+  # without specifying the type, k8s defaults to creating a ClusterIP service
+  type: ClusterIP
+  # pods to expose in cluster
+  selector:
+    # direct traffic to pods named "comments"
+    app: comments
+  ports:
+    # name is for logging or debugging purposes
+    - name: comments
+      protocol: TCP
+      # port assigned to ClusterIP service which redirects traffic to the targetPort 4005 on the container
+      port: 4001
+      # actual port the application listens on(ie. port attached to the container)
+      targetPort: 4001
