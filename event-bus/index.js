@@ -27,16 +27,16 @@ app.post("/events", (req, res) => {
 
   try {
     // emit to the PostService
-    axios.post("http://localhost:4000/events", event);
+    axios.post("http://posts-clusterip-srv:4000/events", event);
 
     // emit to the CommentService
-    axios.post("http://localhost:4001/events", event);
+    // axios.post("http://localhost:4001/events", event);
 
     // emit to the QueryService
-    axios.post("http://localhost:4002/events", event);
+    // axios.post("http://localhost:4002/events", event);
 
     // // emit to the ModerationService
-    axios.post("http://localhost:4003/events", event);
+    // axios.post("http://localhost:4003/events", event);
   } catch (error) {
     // show error message
     console.log(`Error in EventBus => ${error.message}`);
