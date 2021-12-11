@@ -37,10 +37,10 @@ app.post("/events", async (req, res) => {
     // check is case sensitive
     // const status = data.content.includes(check) ? "rejected" : "approved";
 
-    // emit CommentModerated event to the QueryService
+    // emit CommentModerated event to the Event bus
     try {
-      // emit CommentCreated event to QueryService
-      await axios.post("http://localhost:4005/events", {
+      // emit CommentCreated event to Event bus
+      await axios.post("http://event-bus-srv:4005/events", {
         type: "CommentModerated",
         data: {
           id: data.id,
